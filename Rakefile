@@ -17,10 +17,15 @@ Jeweler::Tasks.new do |gem|
   gem.name = "fun_with_testing"
   gem.homepage = "http://github.com/darthschmoo/fun_with_testing"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "A place to stash Test::Unit assertions I've found handy."
+  gem.description = "A place to stash Test::Unit assertions I've found handy. Use at your own risk"
   gem.email = "keeputahweird@gmail.com"
   gem.authors = ["Bryce Anderson"]
+  
+  gem.files = Dir.glob( File.join( ".", "lib", "**", "*.rb" ) ) + 
+              Dir.glob( File.join( ".", "test", "**", "*" ) ) +
+              %w( Gemfile Rakefile LICENSE.txt README.rdoc VERSION CHANGELOG.markdown )
+  
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -32,13 +37,13 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
+# require 'rcov/rcovtask'
+# Rcov::RcovTask.new do |test|
+#   test.libs << 'test'
+#   test.pattern = 'test/**/test_*.rb'
+#   test.verbose = true
+#   test.rcov_opts << '--exclude "gems/*"'
+# end
 
 task :default => :test
 

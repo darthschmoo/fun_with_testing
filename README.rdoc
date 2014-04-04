@@ -1,6 +1,28 @@
 = fun_with_testing
 
-Description goes here.
+A bunch of useful assertions.
+
+Usage:
+
+    # This might go in test/helper.rb, for example
+    class GemTestCase < Test::Unit::TestCase
+      include FunWith::Testing              # includes all custom assertions
+      # include FunWith::Testing::Assertions::Basics        # alternately, just include tests piecemeal
+      # include FunWith::Testing::Assertions::ActiveRecord  # alternately, just include tests piecemeal
+      # include FunWith::Testing::Assertions::FunWithFiles  # alternately, just include tests piecemeal
+    end
+    
+Then in test/test_gem.rb:
+
+    class TestGem < GemTestCase
+      def test_my_thing
+        assert_zero( 0 )
+        assert_not_zero( 1 )
+        assert_has_method( 1, :to_s )
+        # ... and so on down the line
+      end
+    end
+
 
 == Contributing to fun_with_testing
  
