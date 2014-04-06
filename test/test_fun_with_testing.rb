@@ -1,7 +1,7 @@
 require 'helper'
 
 
-class TestFunWithTesting < FunWith::Testing::TestCase
+class TestFunWithTesting < FunWith::Testing::MyTestCase
   should "be plumbed properly" do
     assert defined?( FunWith::Testing::Assertions )
     assert defined?( FunWith::Testing::Assertions::ActiveRecord )

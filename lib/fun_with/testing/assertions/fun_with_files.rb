@@ -57,7 +57,6 @@ module FunWith
           
           message = build_message( message, "Empty file should exist at <#{file}>." )
 
-          
           assert_block message do
             file.exist? && file.empty?
           end

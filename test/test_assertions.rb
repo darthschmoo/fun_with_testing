@@ -2,7 +2,7 @@ require 'helper'
 
 module FunWith
   module Testing
-    class TestAssertions < FunWith::Testing::TestCase
+    class TestAssertions < FunWith::Testing::MyTestCase
       context "testing :assert_zero()" do
         setup do
           extended_test_case
