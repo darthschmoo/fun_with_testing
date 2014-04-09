@@ -81,6 +81,8 @@ module FunWith
             file.exist? && !file.empty?
           end
         end
+        
+        alias :assert_file_not_empty :assert_file_has_content
 
         def assert_file_contents( file, content, message = "" )
           assert_file( file )

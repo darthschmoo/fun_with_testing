@@ -1,3 +1,5 @@
+# require 'test/unit'
+
 files = Dir.glob( File.join( File.dirname(__FILE__), "fun_with", "testing", "**", "*.rb" ) )
 
 for file in files.map{ |f| f.gsub(/\.rb$/, '') }

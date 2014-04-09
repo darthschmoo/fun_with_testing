@@ -23,7 +23,7 @@ module FunWith
           if @response.error?
             puts @response.body
           elsif @response.redirect?
-            raise Test::Unit::AssertionFailedError.new( "Expected success, was redirect to #{@response.redirected_to} with flash #{flash}" )
+            raise Minitest::Unit::AssertionFailedError.new( "Expected success, was redirect to #{@response.redirected_to} with flash #{flash}" )
           end
 
           assert_response :success

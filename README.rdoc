@@ -1,6 +1,6 @@
 = fun_with_testing
 
-A bunch of useful assertions.
+A bunch of useful assertions, and a subclass of Test::Unit::TestCase for my gems to derive from.
 
 Usage:
 
@@ -22,6 +22,15 @@ Then in test/test_gem.rb:
         # ... and so on down the line
       end
     end
+
+
+In the FunWith gems, gem tests use a subclass of FunWith::Testing::TestCase, a subclass of Test::Unit::TestCase
+with some helpful methods.
+
+    #_should() : ignores the inner block, instead prints a message warning that the test is being skipped
+    #_context() : ignores the inner block, instead prints a message warning that the set of tests is being skipped.
+
+
 
 
 == Contributing to fun_with_testing

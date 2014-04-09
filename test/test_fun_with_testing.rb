@@ -14,18 +14,24 @@ class TestFunWithTesting < FunWith::Testing::MyTestCase
     assert_includes( FunWith::Testing::Assertions::ActiveRecord.instance_methods, :assert_no_errors_on )
   end
   
+  should "have test/unit on board" do
+    assert( defined?( Minitest ), "problem loading Minitest" )
+    assert( defined?( Minitest::Test ), "problem loading Minitest" )
+  end
+  
   should "access a listing of assertion modules" do
     assert_includes( FunWith::Testing.included_modules, FunWith::Testing::Assertions::ActiveRecord )
     assert_includes( FunWith::Testing.included_modules, FunWith::Testing::Assertions::Basics )
   end
   
   should "successfully get included in a subclass" do
-    klass = Class.new( Test::Unit::TestCase )
+    klass = Class.new( Minitest::Unit )
     
     imethods = klass.instance_methods.select{|sym| sym.to_s =~ /^(assert|refute)_/ }
-    assert_not_include imethods, :assert_zero
+    
+    refute_includes imethods, :assert_zero
     klass.send( :include, FunWith::Testing )
     imethods = klass.instance_methods.select{|sym| sym.to_s =~ /^(assert|refute)_/ }
-    assert_include( imethods, :assert_zero )
+    assert_includes( imethods, :assert_zero )
   end
 end

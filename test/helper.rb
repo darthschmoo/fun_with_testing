@@ -1,6 +1,7 @@
-require 'rubygems'
+# require 'rubygems'
 require 'bundler'
 require 'debugger'
+
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -8,15 +9,20 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
-require 'test/unit'
+
+# require 'test/unit'
+require 'minitest'
+require 'minitest/autorun'
 require 'shoulda'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
+
+
 require 'fun_with_testing'
 
-class Test::Unit::TestCase
-end
+# class Minitest::Test
+# end
 
 # Any subclass of Test::Unit::TestCase seems to automatically hook into the test suite.
 # Therefore, calling a test to see if it returns false makes the suite fail.  Including
