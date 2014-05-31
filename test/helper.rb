@@ -11,9 +11,9 @@ rescue Bundler::BundlerError => e
 end
 
 # require 'test/unit'
-require 'minitest'
-require 'minitest/autorun'
-require 'shoulda'
+# require 'minitest'
+# require 'minitest/autorun'
+# require 'shoulda'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
@@ -33,7 +33,7 @@ class MockUnitTest < FunWith::Testing::TestCase
     "#{m} #{m2} #{obj}"
   end
   
-  def assert_block( *args, &block )
+  def safe_assert_block( *args, &block )
     yield
   end
 end

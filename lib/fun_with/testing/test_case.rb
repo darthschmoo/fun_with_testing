@@ -64,9 +64,13 @@ module FunWith
       end
       
       def test_gem_validity
-        if self.class.gem_to_test
-          assert self.class.gem_to_test.gem_valid?
+        if jem = self.class.gem_to_test
+          assert_equal [], jem.validate_gem
         end
+      end
+      
+      def build_message( *args )
+        args.map(&:inspect).join("  ")
       end
     end
   end

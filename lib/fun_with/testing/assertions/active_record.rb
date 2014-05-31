@@ -8,7 +8,7 @@ module FunWith
           message = "Record #{record} did not save properly.  "
           message += record.errors.map{ |k,v| "#{k} : #{v}"}.join(", ")
 
-          assert_block message do
+          safe_assert_block message do
             result
           end
         end
@@ -16,7 +16,7 @@ module FunWith
         # Usage:  get("index"); assert_response_success( :template => "index" )
         # 
         def assert_response_success( opts = {} )
-          assert_block "@response is nil" do
+          safe_assert_block "@response is nil" do
             !@response.nil?
           end
 
@@ -31,7 +31,7 @@ module FunWith
         end
 
         def assert_response_redirect( opts = {} )
-          assert_block "@response is nil" do
+          safe_assert_block "@response is nil" do
             !@response.nil?
           end
 
@@ -55,7 +55,7 @@ module FunWith
                                    record.errors.map{ |k,v| "[#{k} : #{v}]"}.join(", ")
                                    )
 
-          assert_block message do
+          safe_assert_block message do
             record.valid?
           end
         end
@@ -64,20 +64,20 @@ module FunWith
         def assert_errors_on( record, message = "" )
           message = build_message( message, "#{record.class.name} record should have errors.")
 
-          assert_block message do
+          safe_assert_block message do
             !record.valid?
           end
         end
       
         def assert_an_error_on( record, _field, error_says = nil )
           message = build_message( "", "<?> should have an error on the <?> field.", record, _field )
-          assert_block message  do
+          safe_assert_block message  do
             !record.errors[_field].blank?
           end
         
           unless error_says.blank?
             message = build_message( "", "<?> should have an error on the <?> field that says <?>.", record, _field, error_says )
-            assert_block message do
+            safe_assert_block message do
               # puts "Inside field error block"
               #             debugger
               record.errors[_field].include?(error_says)
@@ -90,15 +90,15 @@ module FunWith
           new_record_message = build_message(message, "<?> should not be a new record in order to use assert_destroy().", record)
           full_message = build_message(message, "<?> should have been destroyed.", record)
 
-          assert_block not_record_message do
+          safe_assert_block not_record_message do
             record.is_a?(ActiveRecord::Base)
           end
 
-          assert_block new_record_message do
+          safe_assert_block new_record_message do
             record.new_record? == false
           end
 
-          assert_block full_message do
+          safe_assert_block full_message do
             record.class.find_by_id(record.id) == nil
           end
         end
