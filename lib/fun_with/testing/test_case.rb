@@ -1,4 +1,3 @@
-puts "LOADED"
 module FunWith
   module Testing
     class TestCase < Minitest::Test

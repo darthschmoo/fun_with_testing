@@ -2,7 +2,7 @@ require 'helper'
 
 module FunWith
   module Testing
-    class TestVerbosity < FunWith::Testing::MyTestCase
+    class TestVerbosity < FunWith::Testing::AssertionsTestCase
       context "testing in_test_mode?" do
         setup do 
           extended_test_case

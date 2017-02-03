@@ -1,14 +1,22 @@
 CHANGELOG
 =========
 
-v0.0.7
+v0.0.?+
 ------
 
-* ActiveRecord tests should be moved to a fun-with-rails gem
-* FunWith::Files tests should be moved to fun-with-files
 
+v0.0.8
+-------
 
-v0.0.6 (current)
+* Moving TestMode and Verbosity stuff into FunWith::Gems?  Can be used to install "test mode" and "verbosity" on any object/module/class?
+
+v0.0.7  (current)
+-----------------
+
+* Moving everything related to FunWith::Files into that gem.
+* Removing ActiveRecord stuff in preparation for Glorious FunWith::Rails Future!
+
+v0.0.6
 ------
 
 * Adding meat to the testing section

@@ -29,4 +29,3 @@ while files.length > 0
 end
 
 FunWith::Testing.send( :include, FunWith::Testing::Assertions::Basics )
-FunWith::Testing.send( :include, FunWith::Testing::Assertions::ActiveRecord )

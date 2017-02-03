@@ -2,7 +2,7 @@ require 'helper'
 
 module FunWith
   module Testing
-    class TestAssertions < FunWith::Testing::MyTestCase
+    class TestAssertions < FunWith::Testing::AssertionsTestCase
       def modded_object( &block )
         m = Module.new(&block)
         o = Object.new
