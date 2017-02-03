@@ -17,7 +17,7 @@ Juwelier::Tasks.new do |gem|
   gem.name = "fun_with_testing"
   
   # TODO: Not holding up rake-install, as best I can tell.  Delete line?
-  gem.version = (File.exist?('VERSION') ? File.read('VERSION') : "0.0.0")
+  # gem.version = (File.exist?('VERSION') ? File.read('VERSION') : "0.0.0")
   
   
   gem.homepage = "http://github.com/darthschmoo/fun_with_testing"
