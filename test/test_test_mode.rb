@@ -3,7 +3,8 @@ require 'helper'
 module FunWith
   module Testing
     class TestTestMode < FunWith::Testing::MyTestCase
-      context "testing in_test_mode?" do
+      # TODO:  "test mode" applies to gems, so this whole concept needs to be moved to FW::Gems
+      _context "testing in_test_mode?" do
         setup do 
           extended_test_case
           @gem_to_test = Module.new

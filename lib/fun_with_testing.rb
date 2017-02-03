@@ -1,9 +1,9 @@
 require 'bundler'
-require 'debugger'
+require 'byebug'
 require 'minitest'
 require 'minitest/autorun'
 require 'shoulda'
-require 'jeweler'
+require 'juwelier'
 
 begin
   Bundler.setup(:default, :development)
@@ -15,15 +15,18 @@ end
 
 
 files = Dir.glob( File.join( File.dirname(__FILE__), "fun_with", "testing", "**", "*.rb" ) )
+files.map!{ |f| f.gsub( /\.rb$/, '' ) }
 
-for file in files.map{ |f| f.gsub(/\.rb$/, '') }
-  require file
+# TODO: Risk of infinite loops here
+while files.length > 0
+  begin
+    file = files.shift
+    require file
+  rescue NameError => e   # if the class/module depends on a not-yet-defined class/module
+    warn "#{e.class}: #{e.message}"
+    files << file
+  end
 end
-
-
-# FunWith::Testing.extend( FunWith::Testing::FwtExtensions )
-# FunWith::Testing.assertion_modules << FunWith::Testing::Assertions::ActiveRecord
-# FunWith::Testing.assertion_modules << FunWith::Testing::Assertions::Basics
 
 FunWith::Testing.send( :include, FunWith::Testing::Assertions::Basics )
 FunWith::Testing.send( :include, FunWith::Testing::Assertions::ActiveRecord )

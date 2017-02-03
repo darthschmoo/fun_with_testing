@@ -6,6 +6,7 @@ module FunWith
       context "testing in_test_mode?" do
         setup do 
           extended_test_case
+          @case_class.install_verbosity
         end
         
         should "set into verbose by default" do

@@ -11,24 +11,32 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
+require 'juwelier'
+Juwelier::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "fun_with_testing"
+  
+  # TODO: Not holding up rake-install, as best I can tell.  Delete line?
+  gem.version = (File.exist?('VERSION') ? File.read('VERSION') : "0.0.0")
+  
+  
   gem.homepage = "http://github.com/darthschmoo/fun_with_testing"
-  gem.license = "MIT"
+  gem.licenses = ["MIT"]
   gem.summary = "A place to stash Test::Unit assertions I've found handy."
   gem.description = "A place to stash Test::Unit assertions I've found handy. Use at your own risk"
   gem.email = "keeputahweird@gmail.com"
   gem.authors = ["Bryce Anderson"]
   
-  gem.files = Dir.glob( File.join( ".", "lib", "**", "*.rb" ) ) + 
+  # Tried getting rid of this to see if it was blocking rake-install.
+  # No surch lurx.
+  gem.files = Dir.glob( File.join( ".", "lib", "**", "*.rb" ) ) +
               Dir.glob( File.join( ".", "test", "**", "*" ) ) +
               %w( Gemfile Rakefile LICENSE.txt README.rdoc VERSION CHANGELOG.markdown )
-  
+
   # dependencies defined in Gemfile
 end
-Jeweler::RubygemsDotOrgTasks.new
+
+Juwelier::RubygemsDotOrgTasks.new
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
@@ -44,6 +52,14 @@ end
 #   test.verbose = true
 #   test.rcov_opts << '--exclude "gems/*"'
 # end
+
+# Adding this to see if it's making any difference
+desc "Code coverage detail"
+task :simplecov do
+  ENV['COVERAGE'] = "true"
+  Rake::Task['test'].execute
+end
+
 
 task :default => :test
 
