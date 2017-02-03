@@ -25,7 +25,6 @@ while files.length > 0
     file = files.shift
     require file
   rescue NameError => e   # if the class/module depends on a not-yet-defined class/module
-    warn "#{e.class}: #{e.message}"
     files << file
     raise "Too many errors!\n\t" + error_messages.join( "\n\t" ) if error_messages.length >= 100 
   end

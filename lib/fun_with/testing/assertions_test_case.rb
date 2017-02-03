@@ -3,19 +3,20 @@ module FunWith
     # Class is designed specifically for testing custom assertions.
     # See test/test_assertions.rb for how it's supposed to work.
     class AssertionsTestCase < FunWith::Testing::TestCase
-      # Any subclass of Test::Unit::TestCase seems to automatically hook into the test suite.
-      # Therefore, calling a test to see if it returns false makes the suite fail.  Including
-      # to this class instead prevents that.  
-      #
-      # I may need to more closely mimic Test::Unit::TestCase
-      # in order to test messages properly.
-      def safe_assert_block( *args, &block )
-        yield
+      def self.fwt_install_mock_safe_assert_block
+        include AssertionTestMocker
       end
-
+      
+      # After @case_class is created, you can include the methods you want to test
+      # 
       def extended_test_case( &block )
         @case_class = Class.new( FunWith::Testing::AssertionsTestCase )
-
+        
+        # Unhook from some of the test harness stuff to
+        # make it possible to run the assertion methods 
+        # without causing the test suite to topple over.
+        @case_class.fwt_install_mock_safe_assert_block
+        
         @case = @case_class.new( "MockUnitTest" )        # what does name arg do?
     
         assert @case_class.methods.include?( :_should )
