@@ -28,9 +28,13 @@ else
 end
 
 gem "shoulda",   "~> 3", ">= 3.5"
-gem "rdoc",      "~> 4", ">= 4.2.2"
-gem "bundler",   "~> 1", ">= 1.10"
-gem "juwelier",  "~> 2", ">= 2.1"
+gem "rdoc",      "~> 4", ">= 4.3"
+gem "bundler",   "~> 1", ">= 1.14"
+gem "juwelier",  "~> 2", ">= 2.3"
 gem "simplecov", "~> 0", ">= 0.11"
 gem 'byebug',    "~> 9", ">= 9.0"
 gem 'minitest',  "~> 5", ">= 5.9"
+
+# making some of the dependencies more specific than the previously listed gems demand
+gem 'json', "~> 2", ">= 2.0.3"
+gem 'nokogiri', ">= 1.7"
