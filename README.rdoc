@@ -5,16 +5,13 @@ A bunch of useful assertions, and a subclass of Test::Unit::TestCase for my gems
 Usage:
 
     # This might go in test/helper.rb, for example
-    class GemTestCase < Test::Unit::TestCase
-      include FunWith::Testing              # includes all custom assertions
-      # include FunWith::Testing::Assertions::Basics        # alternately, just include tests piecemeal
-      # include FunWith::Testing::Assertions::ActiveRecord  # alternately, just include tests piecemeal
-      # include FunWith::Testing::Assertions::FunWithFiles  # alternately, just include tests piecemeal
+    class GemTestCase < FunWith::Testing::TestCase
+      install_basic_assertions
     end
     
 Then in test/test_gem.rb:
 
-    class TestGem < GemTestCase
+    class MyUnitTest < GemTestCase
       def test_my_thing
         assert_zero( 0 )
         assert_not_zero( 1 )

@@ -366,7 +366,7 @@ module FunWith
         
         context "testing :assert_less_than()" do
           should "pass all tests" do
-            testing_method( :assert_less_than ) do
+            testing_method :assert_less_than do
               yep  5, 4
               yep  "b", "a"
               yep  100, 7.1
@@ -590,6 +590,26 @@ module FunWith
             @case.assert_length 0, []
             @case.assert_length 17, %w(my mother told me to pick the very best one and the very best one is you)
             @case.assert_equal_length [], []
+          end
+        end
+        
+        context "testing assert_constant_defined" do
+          should "acknowledge the existence of the mighty Float class!" do
+            testing_method :assert_constant_defined do
+              yep "Float"
+              yep "FunWith::Testing"
+              yep "FunWith::Testing::TestAssertions"
+              yep "::Array"
+              yep "TRUE"
+              yep "NIL"
+              yep "Enumerator::Lazy"
+              
+              nope "Hippopotamus"
+              nope "FunWith::SpringLoaded::Walrus"
+              
+              oops nil
+              oops 
+            end
           end
         end
       end

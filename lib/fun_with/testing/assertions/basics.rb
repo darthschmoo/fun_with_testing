@@ -1,5 +1,19 @@
+# A namespace module that acts as an umbrella for a 
+# collection of gems I'm maintaining. (rdoc)
+#
+# I seem to be trying to write an entire ecosystem
+# single-handed.  It's not going well.
 module FunWith
+  
+  # A gem that adds a collection of custom assertions to a test suite.
+  #
+  # Also includes some infrastructure for testing the assertions themselves.
+  #
+  # Other FunWith- gems will contain extensions with their own custom assertions.
+  # For example, FunWith::Files adds in things like `assert_directory()`, etc.
   module Testing
+    
+    # Modules full of custom assertions should go under this namespace.
     module Assertions
       module Basics
         # Interesting thing about message() : returns a proc that, when called, returns
@@ -270,6 +284,15 @@ module FunWith
           rescue Exception => e
             msg = message(msg){ "block should not raise a #{mu_pp(e.class)} (message: #{e.message})"}
             assert false, msg
+          end
+        end
+        
+        def assert_constant_defined( const, msg = nil )
+          begin
+            Object.const_get( const )
+            assert true
+          rescue NameError
+            assert false, message(msg){ "expected constant is not defined: #{const}" }
           end
         end
       end
