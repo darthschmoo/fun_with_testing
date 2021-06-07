@@ -4,7 +4,7 @@ module FunWith
     module VerbosityMethods
       def self.included( base )
         base.extend( ClassMethods )
-        base.send( :include, InstanceMethods)
+        base.send( :include, InstanceMethods )
       end
       
       module ClassMethods
@@ -28,16 +28,6 @@ module FunWith
           stream.puts( msg ) if self.verbose?
         end
       end
-    end
-  end
-end
-      
-
-
-module FunWith
-  module Testing
-    module VerbosityMethods
-      
     end
   end
 end

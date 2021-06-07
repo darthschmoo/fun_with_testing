@@ -10,7 +10,11 @@ v0.0.9
 
 * Cleaning up documentation.
 * Better rdoc coverage
-* Moving TestMode and Verbosity stuff into FunWith::Gems?  Can be used to install "test mode" and "verbosity" on any object/module/class?
+* Moving TestMode into separate gem (FunWith::TestMode)
+* What to do with "Verbosity"?  
+* added `.add_factorybot_support()` to TestCase...    # conflicted about this, maybe should go in FunWith::Rails?
+* 
+
 
 v0.0.8   (current)
 ------------------

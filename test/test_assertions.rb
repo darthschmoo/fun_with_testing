@@ -553,7 +553,7 @@ module FunWith
           should "assure us that classes have methods" do
             instance_methods = {
               Integer => [:to_s, :odd?, :even?, :times, :ceil],
-              Fixnum  => [:to_f],
+              Float   => [:to_f],
               Array   => [:length, :each, :sort, :map],
               Object  => [:hash, :tap, :is_a?, :to_s]
             }
@@ -570,7 +570,7 @@ module FunWith
           should "assure us that classes don't have hinkey instance methods" do
             instance_methods = {
               Integer => [:to_p, :old?, :seven?, :timey, :seal],
-              Fixnum  => [:to_g],
+              Numeric => [:to_g],
               Array   => [:lanth, :eech, :sorta, :nap, :way_too_long?],
               Object  => [:hashbrown, :tarp, :is_also_a?, :to_sting]
             }
@@ -600,8 +600,6 @@ module FunWith
               yep "FunWith::Testing"
               yep "FunWith::Testing::TestAssertions"
               yep "::Array"
-              yep "TRUE"
-              yep "NIL"
               yep "Enumerator::Lazy"
               
               nope "Hippopotamus"
@@ -609,6 +607,17 @@ module FunWith
               
               oops nil
               oops 
+            end
+          end
+        end
+        
+        context "testing assert_included_module" do
+          should "recognize modules as included or not" do
+            testing_method :assert_includes_module do
+              yep  File, Kernel
+              yep  Numeric, Comparable
+              yep  SyntaxError, Kernel
+              oops nil, 3
             end
           end
         end

@@ -295,6 +295,18 @@ module FunWith
             assert false, message(msg){ "expected constant is not defined: #{const}" }
           end
         end
+        
+        # Which order makes more sense for the arguments
+        # Assert that the first argument includes the module specified in the second argument
+        def assert_includes_module( mod_or_class, mod, msg = nil )
+          # Make sure we've been passed the proper sort of objects
+          assert mod_or_class.respond_to?( :included_modules, "#{mod_or_class} doesn't respond to included_modules()" )
+          raise ArgumentError.new( "#{mod} is not a module" ) unless mod.kind_of?( Module )
+
+          msg = message(msg){ "#{mod_or_class} should have included module #{mod}" }
+          
+          assert mod_or_class.included_modules.include?(mod), msg
+        end
       end
     end
   end

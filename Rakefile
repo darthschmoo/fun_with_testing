@@ -18,9 +18,7 @@ Juwelier::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "fun_with_testing"
   
-  # TODO: Not holding up rake-install, as best I can tell.  Delete line?
-  # gem.version = (File.exist?('VERSION') ? File.read('VERSION') : "0.0.0")
-  
+  gem.version = File.read('VERSION')   if File.exist?('VERSION')
   
   gem.homepage = "http://github.com/darthschmoo/fun_with_testing"
   gem.licenses = ["MIT"]

@@ -46,7 +46,8 @@ module FunWith
           puts "should fail: #{@current_method_sym}( #{ args.map(&:inspect).join(", ")})"
         end
       end
-  
+      
+      # 
       def oops( *args )
         assert_raises( StandardError ) do
           @case.send( @current_method_sym, *args, &block )
